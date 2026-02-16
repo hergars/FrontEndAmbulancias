@@ -1,0 +1,64 @@
+<app-cabecera></app-cabecera>
+
+<div class="main-layout">
+  <aside class="sidebar">
+    <app-navegacion></app-navegacion>
+  </aside>
+
+    <div class="form-container">
+    <h2>Crear Usuario</h2>
+    <form action="/api/usuarios" method="POST">
+        <div class="form-row">
+        <div class="form-group">
+            <i class="fas fa-user"></i>
+            <input type="text" name="nombre" placeholder="Nombre" required>
+        </div>
+        <div class="form-group">
+            <i class="fas fa-user-tag"></i>
+            <input type="text" name="apellido" placeholder="Apellido" required>
+        </div>
+        <div class="form-group">
+            <i class="fas fa-users-cog"></i>
+            <select name="rol" required>
+            <option value="" disabled selected>Rol</option>
+            <option value="admin">Administrador</option>
+            <option value="editor">Operador</option>
+            <option value="viewer">Medico</option>
+            <option value="viewer">Auxiliar</option>
+            </select>
+        </div>
+        </div>
+
+        <div class="form-row">
+        <div class="form-group">
+            <i class="fas fa-map-marker-alt"></i>
+            <input type="text" name="direccion" placeholder="Dirección" required>
+        </div>
+        <div class="form-group">
+            <i class="fas fa-mobile-alt"></i>
+            <input type="tel" name="celular" placeholder="Celular" required>
+        </div>
+        <div class="form-group">
+            <i class="fas fa-envelope"></i>
+            <input type="email" name="email" placeholder="Email" required>
+        </div>
+        </div>
+
+        <div class="form-row">
+        <div class="form-group">
+            <i class="fas fa-id-card"></i>
+            <input type="text" name="licencia" placeholder="Licencia" required>
+        </div>
+        </div>
+
+        <button type="submit">Crear Usuario</button>
+    </form>
+
+</div>
+
+<!-- Importar Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</div>
+
+
+<app-pie></app-pie>

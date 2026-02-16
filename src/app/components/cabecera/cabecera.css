@@ -1,0 +1,44 @@
+header.titulo_principal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #004d99;
+  color: white;
+  padding: 10px 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.user-menu {
+  display: flex;
+  align-items: center;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+}
+
+.user-photo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.user-name {
+  font-weight: bold;
+}
+
+.btn-logout {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.btn-logout:hover {
+  background: #c82333;
+}
+

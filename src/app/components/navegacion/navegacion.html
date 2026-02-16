@@ -1,0 +1,95 @@
+<nav class="navbar">
+  <div class="navbar-container">
+    <!-- Botón Hamburguesa (solo visible en mobile) -->
+    <button class="menu-toggle" (click)="toggleMenu()" [class.active]="menuAbierto()">
+      <span class="hamburger"></span>
+      <span class="hamburger"></span>
+      <span class="hamburger"></span>
+    </button>
+
+    <!-- Menú Vertical -->
+    <ul class="nav-menu" [class.active]="menuAbierto()">
+        <li class="nav-item">
+            <a
+            class="nav-link" 
+            routerLink="/inicio" 
+            routerLinkActive="active">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-text">Inicio</span>
+            </a>
+        </li>
+        <li class="nav-item">
+        <a 
+            class="nav-link" 
+            routerLink="/usuarios" 
+            routerLinkActive="active">
+            <span class="nav-icon">👥</span>
+            <span class="nav-text">Gestión Usuarios</span>
+        </a>
+        </li>
+        <li class="nav-item">
+            <a
+            class="nav-link" 
+            routerLink="/asignaservicios" 
+            routerLinkActive="active">
+            <span class="nav-icon">📝</span>
+            <span class="nav-text">Asignación Servicios</span>
+            </a>
+        </li>
+        <li class="nav-item">
+        <a 
+            class="nav-link" 
+            routerLink="/servicios" 
+            routerLinkActive="active">
+            <span class="nav-icon">📡</span>
+            <span class="nav-text">Seguimiento Servicios</span>
+        </a>
+        </li>
+        <li class="nav-item">
+            <a 
+            class="nav-link" 
+            routerLink="/estadisticas" 
+            routerLinkActive="active">
+            <span class="nav-icon">📊</span>
+            <span class="nav-text">Estadísticas</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a 
+            class="nav-link" 
+            routerLink="/vehiculos" 
+            routerLinkActive="active">
+            <span class="nav-icon">🚑</span>
+            <span class="nav-text">Gestión Vehículo</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a 
+            class="nav-link" 
+            routerLink="/instituciones" 
+            routerLinkActive="active">
+            <span class="nav-icon">🏥</span>
+            <span class="nav-text">Gestión Instituciones</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a
+            class="nav-link" 
+            routerLink="/facturas" 
+            routerLinkActive="active">
+            <span class="nav-icon">💳</span>
+            <span class="nav-text">Gestión Facturas</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a 
+            class="nav-link" 
+            routerLink="/informes" 
+            routerLinkActive="active">
+            <span class="nav-icon">📑</span>
+            <span class="nav-text">Gestión Informes</span>
+            </a>
+        </li>
+    </ul>
+  </div>
+</nav>
