@@ -7,113 +7,143 @@
 
     <div class="form-container">
         <h2>Asignacion de Servicios</h2>
-        <form action="/api/asigna" method="POST">
-            <div class="form-row">
-                <div class="form-group">
-                    <i class="fas fa-list"></i>
-                    <input list="paciente" name="paciente" placeholder="Paciente" required>
-                    <datalist id="paciente">
-                        <option value="Juan Pérez">
-                        <option value="María López">
-                        <option value="Carlos García">
-                        <option value="Ana Martínez">
-                    </datalist>
-                </div>
+        <form [formGroup]="asignacionForm" (ngSubmit)="guardar()">
+
+        <div class="form-row">
+            <div class="form-group">
+            <i class="fas fa-user"></i>
+            <input type="text" formControlName="paciente" placeholder="Paciente">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+            <i class="fas fa-calendar"></i>
+            <input type="date" formControlName="fecha">
             </div>
 
-        
-            <div class="form-row">
-                <div class="form-group">
-                    <i class="fas fa-clock"></i>
-                    <input type="date" name="fecha" required>
-                </div>
-                <div class="form-group">
-                    <i class="fas fa-clock"></i>
-                    <input type="time" name="hora" required>
-                </div>
-                <div class="form-group">
-                    <i class="fas fa-cogs"></i>
-                    <select name="tiposervicio" required>
-                    <option value="" disabled selected>Tipo de Servicio</option>
-                    <option value="001">Alta</option>
-                    <option value="003">Baja</option>
-                    </select>
-                </div>
+            <div class="form-group">
+            <i class="fas fa-clock"></i>
+            <input type="time" formControlName="hora">
             </div>
 
-            <div class="form-section"> 
-                <h3>Datos de origen</h3>
-                <div class="form-row">
-                    <div class="form-group">
-                        <i class="fas fa-university"></i>
-                        <select name="instituciono" required>
-                        <option value="" disabled selected>Institución</option>
-                        <option value="001">Hospital</option>
-                        <option value="002">Clinica A</option>
-                        <option value="003">Clinica B</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <i class="fas fa-list"></i>
-                        <input list="departamentoso" name="departamentoo" placeholder="Departamento" required>
-                        <datalist id="departamentoso">
-                            <option value="Bogotá">
-                            <option value="Antioquia">
-                            <option value="Valle del Cauca">
-                            <option value="Santander">
-                        </datalist>
-                    </div>
+            <div class="form-group">
+            <i class="fas fa-cogs"></i>
+            <select formControlName="tiposervicio">
+                <option value="">Tipo Servicio</option>
+                <option value="alta">Alta</option>
+                <option value="baja">Baja</option>
+            </select>
+            </div>
+        </div>
 
-                    <div class="form-group">
-                        <i class="fas fa-city"></i>
-                        <select name="ciudado" required>
-                        <option value="" disabled selected>Ciudad</option>
-                        <option value="001">Bogota</option>
-                        <option value="002">Medellin</option>
-                        </select>
-                    </div>
-                </div>
+        <h3>Datos de Origen</h3>
+
+        <div class="form-row">
+            <div class="form-group">
+            <i class="fas fa-university"></i>
+            <select formControlName="instituciono">
+                <option value="">Institución Origen</option>
+                <option value="alta">Clinica A</option>
+                <option value="baja">Clinica B</option>
+                <option value="baja">Clinica C</option>
+            </select>
             </div>
 
-            <div class="form-section"> 
-                <h3>Datos de Destino</h3>
-                <div class="form-row">
-                    <div class="form-group">
-                        <i class="fas fa-university"></i>
-                        <select name="instituciond" required>
-                        <option value="" disabled selected>Institución</option>
-                        <option value="001">Hospital</option>
-                        <option value="002">Clinica A</option>
-                        <option value="003">Clinica B</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <i class="fas fa-list"></i>
-                        <input list="departamentosd" name="departamentod" placeholder="Departamento" required>
-                        <datalist id="departamentosd">
-                            <option value="Bogotá">
-                            <option value="Antioquia">
-                            <option value="Valle del Cauca">
-                            <option value="Santander">
-                        </datalist>
-                    </div>
+            <div class="form-group">
+            <i class="fas fa-city"></i><i class="fas fa-list"></i>
+            <select formControlName="departamentoo">
+                <option value="">Departamento Origen</option>
+                <option value="11">Bogotá</option>
+                <option value="05">Antioquia</option>
+            </select>
+            </div>            
 
-                    <div class="form-group">
-                        <i class="fas fa-city"></i>
-                        <select name="ciudadd" required>
-                        <option value="" disabled selected>Ciudad</option>
-                        <option value="001">Bogota</option>
-                        <option value="002">Medellin</option>
-                        </select>
-                    </div>
-                </div>
+            <div class="form-group">
+            <i class="fas fa-list"></i>
+            <select formControlName="ciudado">
+                <option value="">Ciudad Origen</option>
+                <option value="001">Bogotá</option>
+                <option value="002">Medellín</option>
+            </select>
+            </div>            
+        </div>
+
+        <h3>Datos de Destino</h3>
+
+        <div class="form-row">
+             <div class="form-group">
+            <i class="fas fa-university"></i>
+            <select formControlName="instituciond">
+                <option value="">Institución Destino</option>
+                <option value="alta">Clinica A</option>
+                <option value="baja">Clinica B</option>
+                <option value="baja">Clinica C</option>
+            </select>
             </div>
 
-            <button type="submit">Asignar Servicio</button>
+
+            <div class="form-group">
+            <i class="fas fa-city"></i><i class="fas fa-list"></i>
+            <select formControlName="departamentod">
+                <option value="">Departamento Destino</option>
+                <option value="11">Bogotá</option>
+                <option value="05">Antioquia</option>
+            </select>
+            </div> 
+
+            <div class="form-group">
+            <i class="fas fa-list"></i>
+            <select formControlName="ciudadd">
+                <option value="">Ciudad Destino</option>
+                <option value="001">Bogotá</option>
+                <option value="002">Medellín</option>
+            </select>
+            </div>  
+        </div>
+
+        <button type="submit" class="btn-guardar">
+            {{ editando ? 'Actualizar' : 'Asignar Servicio' }}
+        </button>
+
         </form>
+    <div class="table-container">
 
+      <h2 class="table-title">Servicios Registrados</h2>
+
+        <table class="custom-table">
+        <thead>
+            <tr>
+            <th>Paciente</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Tipo</th>
+            <th>Origen</th>
+            <th>Destino</th>
+            <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let a of asignaciones">
+            <td>{{ a.paciente }}</td>
+            <td>{{ a.fecha }}</td>
+            <td>{{ a.hora }}</td>
+            <td>{{ a.tiposervicio }}</td>
+            <td>{{ a.instituciono }} - {{ a.ciudado }}</td>
+            <td>{{ a.instituciond }} - {{ a.ciudadd }}</td>
+            <td>
+                <button class="btn-edit" (click)="editar(a)">
+                <i class="fas fa-edit"></i>
+                </button>
+                <button class="btn-delete" (click)="eliminar(a.id)">
+                <i class="fas fa-trash"></i>
+                </button>
+            </td>
+            </tr>
+        </tbody>
+        </table>
     </div>
-
+ </div>
 <!-- Importar Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </div>

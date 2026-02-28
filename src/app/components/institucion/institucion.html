@@ -1,61 +1,110 @@
 <app-cabecera></app-cabecera>
 
 <div class="main-layout">
+
   <aside class="sidebar">
     <app-navegacion></app-navegacion>
   </aside>
 
-    <div class="form-container">
-    <h2>Crear Instituciones</h2>
-    <form action="/api/instituciones" method="POST">
-        <div class="form-row">
-        <div class="form-group">
-            <i class="fas fa-university"></i>
-            <input type="text" name="nombre" placeholder="Nombre de la institución" required>
-        </div>
-        <div class="form-group">
-            <i class="fas fa-map-marker-alt"></i>
-            <input type="text" name="direccion" placeholder="Direccion de la institución" required>
-        </div>
-        <div class="form-group">
-            <i class="fas fa-phone"></i>
-            <input type="text" name="telefono" placeholder="Telefono de la institución" required>
-        </div>
-        </div>
-        <div class="form-row">
-        <div class="form-group">
-            <i class="fas fa-map"></i>
-            <select name="departamento" required>
-            <option value="" disabled selected>Departamento</option>
-            <option value="11">Bogota</option>
-            <option value="05">Antioquia</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <i class="fas fa-city"></i>
-            <select name="ciudad" required>
-            <option value="" disabled selected>Ciudad</option>
-            <option value="001">Bogota</option>
-            <option value="002">Medellin</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <i class="fas fa-cogs"></i>
-            <select name="complejidad" required>
-            <option value="" disabled selected>Complejidad</option>
-            <option value="001">Alta</option>
-            <option value="002">Media</option>
-            <option value="003">Baja</option>
-            </select>
-        </div>
-    </div>
+  <div class="form-container">
 
-        <button type="submit">Crear Institución</button>
+    <h2>{{ editando ? 'Actualizar Institución' : 'Crear Institución' }}</h2>
+
+    <form [formGroup]="institucionForm" (ngSubmit)="guardar()">
+
+      <div class="form-row">
+        <div class="form-group">
+          <i class="fas fa-university"></i>
+          <input type="text" formControlName="nombre" placeholder="Nombre">
+        </div>
+
+        <div class="form-group">
+          <i class="fas fa-map-marker-alt"></i>
+          <input type="text" formControlName="direccion" placeholder="Dirección">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <i class="fas fa-phone"></i>
+          <input type="text" formControlName="telefono" placeholder="Teléfono">
+        </div>
+
+        <div class="form-group">
+          <i class="fas fa-map"></i>
+          <select formControlName="departamento">
+            <option value="">Departamento</option>
+            <option value="11">Bogotá</option>
+            <option value="05">Antioquia</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <i class="fas fa-city"></i>
+          <select formControlName="ciudad">
+            <option value="">Ciudad</option>
+            <option value="001">Bogotá</option>
+            <option value="002">Medellín</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <i class="fas fa-cogs"></i>
+          <select formControlName="complejidad">
+            <option value="">Complejidad</option>
+            <option value="alta">Alta</option>
+            <option value="media">Media</option>
+            <option value="baja">Baja</option>
+          </select>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-guardar">
+        {{ editando ? 'Actualizar' : 'Crear Institución' }}
+      </button>
+
     </form>
 
+    <!-- TABLA -->
+    <div class="table-container">
+
+      <h2 class="table-title">Instituciones Registradas</h2>
+    <table class="custom-table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Dirección</th>
+          <th>Teléfono</th>
+          <th>Departamento</th>
+          <th>Ciudad</th>
+          <th>Complejidad</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let i of instituciones">
+          <td>{{ i.nombre }}</td>
+          <td>{{ i.direccion }}</td>
+          <td>{{ i.telefono }}</td>
+          <td>{{ i.departamento }}</td>
+          <td>{{ i.ciudad }}</td>
+          <td>{{ i.complejidad }}</td>
+          <td>
+            <button class="btn-edit" (click)="editar(i)">
+              <i class="fas fa-edit"></i>
+            </button>
+            <button class="btn-delete" (click)="eliminar(i.id)">
+              <i class="fas fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+        </table>
+    </div>
+  </div>
 </div>
 
-<!-- Importar Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-</div>
 <app-pie></app-pie>

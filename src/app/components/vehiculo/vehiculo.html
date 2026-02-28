@@ -1,50 +1,97 @@
 <app-cabecera></app-cabecera>
 
 <div class="main-layout">
+
   <aside class="sidebar">
     <app-navegacion></app-navegacion>
   </aside>
 
-    <div class="form-container">
-    <h2>Crear Vehiculo</h2>
-    <form action="/api/vehiculos" method="POST">
-        <div class="form-row">
+  <div class="form-container">
+
+    <h2>{{ editando ? 'Actualizar Vehículo' : 'Crear Vehículo' }}</h2>
+
+    <form [formGroup]="vehiculoForm" (ngSubmit)="guardar()">
+
+      <div class="form-row">
+
         <div class="form-group">
-            <i class="fas fa-id-card"></i>
-            <input type="text" name="Placa" placeholder="placa" required>
+          <i class="fas fa-id-card"></i>
+          <input type="text" formControlName="placa" placeholder="Placa">
         </div>
+
         <div class="form-group">
-            <i class="fas fa-key"></i>
-            <input type="text" name="Codsecretaria" placeholder="CodSecretaria" required>
+          <i class="fas fa-key"></i>
+          <input type="text" formControlName="codsecretaria" placeholder="CodSecretaria">
         </div>
+
+      </div>
+
+      <div class="form-row">
+
         <div class="form-group">
-            <i class="fas fa-tag"></i>
-            <select name="tipo" required>
-            <option value="" disabled selected>Tipo</option>
-            <option value="admin">Basica</option>
-            <option value="editor">Medicalizada</option>
-            </select>
+          <i class="fas fa-tag"></i>
+          <select formControlName="tipo">
+            <option value="">Tipo</option>
+            <option value="basica">Basica</option>
+            <option value="medicalizada">Medicalizada</option>
+          </select>
         </div>
-        </div>
-        <div class="form-row">
+
         <div class="form-group">
-            <i class="fas fa-toggle-on"></i>
-            <select name="estado" required>
-            <option value="" disabled selected>Estado</option>
+          <i class="fas fa-toggle-on"></i>
+          <select formControlName="estado">
+            <option value="">Estado</option>
             <option value="activo">Activo</option>
             <option value="inactivo">Inactivo</option>
-            </select>
-        </div>
+          </select>
         </div>
 
-        <button type="submit">Crear Vehiculo</button>
+      </div>
+
+      <button type="submit" class="btn-guardar">
+        {{ editando ? 'Actualizar' : 'Crear Vehículo' }}
+      </button>
+
     </form>
 
-</div>
+    <!-- TABLA -->
+    <div class="table-container">
 
-<!-- Importar Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-</div>
+    <h2 class="table-title">Vehículos Registrados</h2>
+        <table class="custom-table">
 
+        <thead>
+            <tr>
+            <th>Placa</th>
+            <th>CodSecretaria</th>
+            <th>Tipo</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let v of vehiculos">
+            <td>{{ v.placa }}</td>
+            <td>{{ v.codsecretaria }}</td>
+            <td>{{ v.tipo }}</td>
+            <td>{{ v.estado }}</td>
+            <td>
+                <button class="btn-edit" (click)="editar(v)">
+                <i class="fas fa-edit"></i>
+                </button>
+                <button class="btn-delete" (click)="eliminar(v.id)">
+                <i class="fas fa-trash"></i>
+                </button>
+            </td>
+            </tr>
+        </tbody>
+
+        </table>
+    </div>
+
+  </div>
+
+</div>
 
 <app-pie></app-pie>

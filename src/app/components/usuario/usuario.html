@@ -1,4 +1,7 @@
-<app-cabecera></app-cabecera>
+
+<app-cabecera></app-cabecera>   
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <div class="main-layout">
   <aside class="sidebar">
@@ -6,59 +9,111 @@
   </aside>
 
     <div class="form-container">
-    <h2>Crear Usuario</h2>
-    <form action="/api/usuarios" method="POST">
+
+    <h2>{{ editando ? 'Editar Usuario' : 'Crear Usuario' }}</h2>
+
+        <form [formGroup]="usuarioForm" (ngSubmit)="guardar()" class="form-container">
+
         <div class="form-row">
-        <div class="form-group">
+            <div class="form-group">
             <i class="fas fa-user"></i>
-            <input type="text" name="nombre" placeholder="Nombre" required>
-        </div>
-        <div class="form-group">
+            <input type="text" formControlName="nombre" placeholder="Nombre">
+            </div>
+
+            <div class="form-group">
             <i class="fas fa-user-tag"></i>
-            <input type="text" name="apellido" placeholder="Apellido" required>
+            <input type="text" formControlName="apellido" placeholder="Apellido">
+            </div>
         </div>
-        <div class="form-group">
-            <i class="fas fa-users-cog"></i>
-            <select name="rol" required>
-            <option value="" disabled selected>Rol</option>
-            <option value="admin">Administrador</option>
-            <option value="editor">Operador</option>
-            <option value="viewer">Medico</option>
-            <option value="viewer">Auxiliar</option>
+
+        <div class="form-row">
+            <div class="form-group">
+            <i class="fas fa-user-shield"></i>
+            <select formControlName="rol">
+                <option value="">Rol</option>
+                <option value="admin">Administrador</option>
+                <option value="editor">Operador</option>
+                <option value="medico">Medico</option>
+                <option value="auxiliar">Auxiliar</option>
             </select>
-        </div>
-        </div>
+            </div>
 
-        <div class="form-row">
-        <div class="form-group">
+            <div class="form-group">
             <i class="fas fa-map-marker-alt"></i>
-            <input type="text" name="direccion" placeholder="Dirección" required>
-        </div>
-        <div class="form-group">
-            <i class="fas fa-mobile-alt"></i>
-            <input type="tel" name="celular" placeholder="Celular" required>
-        </div>
-        <div class="form-group">
-            <i class="fas fa-envelope"></i>
-            <input type="email" name="email" placeholder="Email" required>
-        </div>
+            <input type="text" formControlName="direccion" placeholder="Dirección">
+            </div>
         </div>
 
         <div class="form-row">
-        <div class="form-group">
+            <div class="form-group">
+            <i class="fas fa-mobile-alt"></i>
+            <input type="tel" formControlName="celular" placeholder="Celular">
+            </div>
+
+            <div class="form-group">
+            <i class="fas fa-envelope"></i>
+            <input type="email" formControlName="email" placeholder="Email">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group full-width">
             <i class="fas fa-id-card"></i>
-            <input type="text" name="licencia" placeholder="Licencia" required>
-        </div>
+            <input type="text" formControlName="licencia" placeholder="Licencia">
+            </div>
         </div>
 
-        <button type="submit">Crear Usuario</button>
-    </form>
+        <button type="submit" class="btn-guardar">
+            {{ editando ? 'Actualizar' : 'Crear Usuario' }}
+        </button>
+
+        </form>
+    <div class="table-container">
+
+    <h2 class="table-title">Usuarios Registrados</h2>
+
+    <table class="custom-table">
+
+        <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Rol</th>
+            <th>Dirección</th>
+            <th>Celular</th>
+            <th>Email</th>
+            <th>Licencia</th>
+            <th class="acciones-col">Acciones</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let usuario of usuarios; let i = index">
+            <td>{{ usuario.nombre }}</td>
+            <td>{{ usuario.apellido }}</td>
+            <td>
+            <span class="badge" [ngClass]="usuario.rol">
+                {{ usuario.rol }}
+            </span>
+            </td>
+            <td>{{ usuario.direccion }}</td>
+            <td>{{ usuario.celular }}</td>
+            <td>{{ usuario.email }}</td>
+            <td>{{ usuario.licencia }}</td>
+            <td class="acciones">
+            <button class="btn-edit" (click)="editar(usuario, i)">
+                <i class="fas fa-edit"></i>
+            </button>
+            <button class="btn-delete" (click)="eliminar(i)">
+                <i class="fas fa-trash"></i>
+            </button>
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
 
 </div>
-
-<!-- Importar Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    </div>
 </div>
-
-
-<app-pie></app-pie>
+<app-pie></app-pie> 
