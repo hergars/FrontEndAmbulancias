@@ -18,10 +18,10 @@
                     <i class="fas fa-user-shield"></i>
                     <select formControlName="tipo_documento">
                         <option value="">Tipo documento</option>
-                        <option value="1">CC</option>
-                        <option value="2">TI</option>
-                        <option value="3">RC</option>
-                        <option value="4">PS</option>
+                        <option value="CC">CC</option>
+                        <option value="TI">TI</option>
+                        <option value="RC">RC</option>
+                        <option value="PS">PS</option>
                     </select>
                 </div>
 
@@ -156,17 +156,17 @@
                 </thead>
 
                 <tbody>
-
+                        
                     <tr *ngFor="let usuario of usuarios; let i = index">
-                        <td>{{ usuario.tipo_documento | uppercase }}</td>
+                        <td>{{ usuario.tipo_documento }}</td>
                         <td>{{ usuario.documento }}</td>
                         <td>{{ usuario.nombre_usuario | titlecase }}</td>
                         <td>
                             <span class="badge" [ngClass]="usuario.rol">
-                                {{ usuario.id_rol | uppercase }}
+                                {{ usuario.id_rol }}
                             </span>
                         </td>
-                        <td>{{ usuario.eps }}</td>
+                        <td>{{ usuario.cod_eps}}</td>
                         <td>{{ usuario.celular_usuario }}</td>
                         <td>{{ usuario.correo_usuario }}</td>
                         <td>{{ usuario.cod_pais }}</td>
