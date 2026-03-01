@@ -26,54 +26,34 @@
 
       <div class="form-row">
         <div class="form-group">
-          <i class="fas fa-phone"></i>
-          <input type="text" formControlName="telefono_institucion" placeholder="Teléfono">
-        </div>
-
-        <div class="form-group">
-          <i class="fas fa-map"></i>
-          <select formControlName="departamento_institucion" placeholder="Departamento">
-            <option value="">Departamento</option>
-            <option value="11">Bogotá</option>
-            <option value="05">Antioquia</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group">
           <i class="fas fa-city"></i>
-          <select formControlName="ciudad_institucion" placeholder="Ciudad">
-            <option value="">Ciudad</option>
-            <option value="001">Bogotá</option>
-            <option value="002">Medellín</option>
+          <select formControlName="cod_municipio" placeholder="Ciudad">
+            <option [ngValue]="">Ciudad</option>
+            <option [ngValue]="1">Bogotá</option>
+            <option [ngValue]="2">Medellín</option>
           </select>
         </div>
-
-        <div class="form-group">
-          <i class="fas fa-cogs"></i>
-          <select formControlName="tipo_institucion">
-            <option value="">Complejidad</option>
-            <option value="1">Alta</option>
-            <option value="2">Media</option>
-            <option value="3">Baja</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-row">
         <div class="form-group">
           <i class="fas fa-university"></i>
           <select formControlName="estado_institucion">
             <option value="">Estado</option>
-            <option value="1">Activa</option>
-            <option value="2">Inactiva</option>
+            <option value="ACTIVO">Activo</option>
+            <option value="INACTIVO">Inactivo</option>
           </select>
         </div>
 
+      </div>
+      <div class="form-row">
         <div class="form-group">
-          <i class="fas fa-map-marker-alt"></i>
-          <input type="text" formControlName="direccion_institucion" placeholder="Dirección">
+          <i class="fas fa-city"></i>
+          <select formControlName="tipo_institucion" placeholder="Tipo">
+            <option [ngValue]="">Tipo</option>
+            <option [ngValue]="'Publico'">PUBLICO</option>
+            <option [ngValue]="'Privado'">PRIVADO</option>
+          </select>
         </div>
+
+
       </div>
       <button type="submit" class="btn-guardar">
         {{ editando ? 'Actualizar' : 'Crear Institución' }}
@@ -90,8 +70,6 @@
         <tr>
           <th>Nombre</th>
           <th>Dirección</th>
-          <th>Teléfono</th>
-          <th>Departamento</th>
           <th>Ciudad</th>
           <th>Complejidad</th>
           <th>Estado</th>
@@ -101,18 +79,16 @@
 
       <tbody>
         <tr *ngFor="let i of instituciones">
-          <td>{{ i.nombre | uppercase }}</td>
-          <td>{{ i.direccion | uppercase}}</td>
-          <td>{{ i.telefono }}</td>
-          <td>{{ i.departamento | uppercase}}</td>
-          <td>{{ i.ciudad | uppercase}}</td>
-          <td>{{ i.complejidad }}</td>
-          <td>{{ i.estado | uppercase}}</td> 
+          <td>{{ i.nombre_institucion | uppercase }}</td>
+          <td>{{ i.direccion_institucion | uppercase}}</td>
+          <td>{{ i.cod_municipio }}</td>
+          <td>{{ i.tipo_institucion }}</td>
+          <td>{{ i.estado_institucion }}</td> 
           <td>
             <button class="btn-edit" (click)="editar(i)">
               <i class="fas fa-edit"></i>
             </button>
-            <button class="btn-delete" (click)="eliminar(i.id)">
+            <button class="btn-delete" (click)="eliminar(i.id_institucion)">
               <i class="fas fa-trash"></i>
             </button>
           </td>

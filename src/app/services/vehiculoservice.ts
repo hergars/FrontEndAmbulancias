@@ -16,14 +16,14 @@ export class VehiculoService {
   }
 
   crear(data: any): Observable<any> {
-    return this.http.post(this.apiUrl, data);
+    return this.http.post(`${this.apiUrl}/create`, data);
   }
 
-  actualizar(id: number, data: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${id}`, data);
+  actualizar(placa: string, data: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${placa}/update`, data);
   }
 
-  eliminar(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+  eliminar(placa: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${placa}/delete`);
   }
 }

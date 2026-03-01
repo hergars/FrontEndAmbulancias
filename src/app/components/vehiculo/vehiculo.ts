@@ -18,7 +18,12 @@ export class VehiculoComponent implements OnInit {
   vehiculoForm: FormGroup;
   vehiculos: any[] = [];
   editando = false;
-  idEditar: number | null = null;
+  placaEditar: string | null = null;
+
+    hoy = new Date();
+  fechaLocal = this.hoy.getFullYear() + '-' +
+    String(this.hoy.getMonth() + 1).padStart(2, '0') + '-' +
+    String(this.hoy.getDate()).padStart(2, '0');
 
   constructor(
     private fb: FormBuilder,
@@ -27,12 +32,14 @@ export class VehiculoComponent implements OnInit {
 
     this.vehiculoForm = this.fb.group({
       placa: [''],
-      codsecretaria: [''],
+      cod_secretaria: [''],
       tipo_vehiculo: [''],
       marca: [''],
       modelo: [''],
       soat: [''],
-      tecnicomecanica: [''],
+      tecnomecanica: [''],
+      creado_por_vehiculo: ['ADM01'],
+      fecha_creacion_vehiculo: [this.fechaLocal],
       estado_vehiculo: ['']
     });
 
@@ -51,41 +58,44 @@ export class VehiculoComponent implements OnInit {
 
   guardar() {
 
-    if (this.editando && this.idEditar !== null) {
-
-      this.vehiculoService.actualizar(this.idEditar, this.vehiculoForm.value)
-        .subscribe(() => {
-          this.resetForm();
-        });
-
-    } else {
-
-      console.log("JSON enviado:", this.vehiculoForm.value);
-
-      this.vehiculoService.crear(this.vehiculoForm.value)
-        .subscribe(() => {
-          this.resetForm();
-        });
-    }
-  }
-
-  editar(vehiculo: any) {
-    this.vehiculoForm.patchValue(vehiculo);
-    this.editando = true;
-    this.idEditar = vehiculo.id;
-  }
-
-  eliminar(id: number) {
-    this.vehiculoService.eliminar(id)
+  if (this.editando && this.placaEditar) {
+    this.vehiculoService.actualizar(this.placaEditar, this.vehiculoForm.value)
       .subscribe(() => {
-        this.cargarVehiculos();
+        this.resetForm();
       });
+  } else {
+    console.log("JSON enviado:", this.vehiculoForm.value);
+    this.vehiculoService.crear(this.vehiculoForm.value)
+      .subscribe(() => {
+        this.resetForm();
+        this.cargarVehiculos(); 
+      });
+}
   }
+
+editar(vehiculo: any) {
+  this.vehiculoForm.patchValue(vehiculo);
+  this.editando = true;
+  this.placaEditar = vehiculo.placa; 
+}
+
+eliminar(placaEditar: string) {
+  const confirmado = confirm(`¿Estás seguro de eliminar el vehículo con placa "${placaEditar}"?`);
+  if (!confirmado) {
+    return; 
+  }
+
+  this.vehiculoService.eliminar(placaEditar)
+    .subscribe(() => {
+      alert(`Vehículo con placa "${placaEditar}" eliminado correctamente.`);
+      this.cargarVehiculos(); 
+    });
+}
 
   resetForm() {
     this.cargarVehiculos();
     this.vehiculoForm.reset();
     this.editando = false;
-    this.idEditar = null;
+    this.placaEditar = null;
   }
 }

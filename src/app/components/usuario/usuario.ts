@@ -31,7 +31,7 @@ export class UsuarioComponent implements OnInit {
     private usuarioService: UsuarioService
   ) {
     this.usuarioForm = this.fb.group({
-      id: [null],  // 👈 id agregado para editar
+      id_usuario: [null],  
       nombre_usuario: ['', Validators.required],
       tipo_documento: ['', Validators.required],
       documento: ['', Validators.required],
@@ -46,7 +46,7 @@ export class UsuarioComponent implements OnInit {
       estado_usuario: ['Activo'],
       creado_por_usuario: ['Admin'],
       fecha_creacion_usuario: [this.fechaLocal],
-      create_at: [this.hoy.toISOString()],
+//      create_at: [this.hoy.toISOString()],
       licencia: ['']
     });
   }
@@ -73,7 +73,7 @@ export class UsuarioComponent implements OnInit {
       return;
     }
 
-    // Convertir campos numéricos a number antes de enviar
+   
     const usuario: Usuario = {
       ...this.usuarioForm.value,
       cod_pais: Number(this.usuarioForm.value.cod_pais),
@@ -83,8 +83,8 @@ export class UsuarioComponent implements OnInit {
       create_at: new Date().toISOString()
     };
 
-    if (this.editando && usuario.id) {
-      this.usuarioService.actualizar(usuario.id, usuario)
+    if (this.editando && usuario.id_usuario) {
+      this.usuarioService.actualizar(usuario.id_usuario, usuario)
         .subscribe(res => {
           console.log("Usuario actualizado:", res);
           this.cargarUsuarios();
@@ -100,16 +100,17 @@ export class UsuarioComponent implements OnInit {
           this.usuarioForm.reset();
         }, err => console.error(err));
     }
+    this.cargarUsuarios();
   }
 
   editar(usuario: Usuario, index: number) {
-    this.usuarioForm.patchValue(usuario); // copia id y demás campos
+    this.usuarioForm.patchValue(usuario); 
     this.editando = true;
     this.indiceEditar = index;
   }
 
   eliminar(index: number) {
-    const id = this.usuarios[index].id!;
+    const id = this.usuarios[index].id_usuario!;
     const usuario = this.usuarios[index];
     const confirmado = confirm(`¿Seguro de eliminar a "${usuario.nombre_usuario}"?`);
     if (!confirmado) return;

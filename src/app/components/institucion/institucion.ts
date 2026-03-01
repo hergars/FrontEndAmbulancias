@@ -8,7 +8,6 @@ import { Navegacion } from '../navegacion/navegacion';
 
 @Component({
   selector: 'app-institucion',
-  standalone: true,
   imports: [CommonModule, ReactiveFormsModule, Cabecera, Pie, Navegacion],
   templateUrl: './institucion.html',
   styleUrls: ['./institucion.css']
@@ -20,19 +19,25 @@ export class InstitucionComponent implements OnInit {
   editando = false;
   idEditar: number | null = null;
 
+    hoy = new Date();
+  fechaLocal = this.hoy.getFullYear() + '-' +
+    String(this.hoy.getMonth() + 1).padStart(2, '0') + '-' +
+    String(this.hoy.getDate()).padStart(2, '0');
+
   constructor(
     private fb: FormBuilder,
     private institucionService: InstitucionService
   ) {
 
     this.institucionForm = this.fb.group({
+      id_institucion: [null],  
       nombre_institucion: [''],
       direccion_institucion: [''],
-      telefono_institucion: [''],
-      departamento_institucion: [''],
-      ciudad_institucion: [''],
+      cod_municipio: [''],
       tipo_institucion: [''],
-      estado_institucion: ['']
+      creado_por_institucion: ['ADMIN01'],
+      fecha_creacion_institucion: [this.fechaLocal],
+      estado_institucion: ['Activo']
     });
   }
   ngOnInit(): void {
@@ -64,20 +69,27 @@ export class InstitucionComponent implements OnInit {
           this.resetForm();
         });
     }
+    this.cargarInstituciones();
   }
 
   editar(inst: any) {
     this.institucionForm.patchValue(inst);
     this.editando = true;
-    this.idEditar = inst.id;
+    this.idEditar = inst.id_institucion;
   }
 
-  eliminar(id: number) {
-    this.institucionService.eliminar(id)
-      .subscribe(() => {
-        this.cargarInstituciones();
-      });
+eliminar(id: number) {
+  const confirmado = confirm(`¿Estás seguro de eliminar la institución con ID ${id}?`);
+  if (!confirmado) {
+    return; 
   }
+
+  this.institucionService.eliminar(id)
+    .subscribe(() => {
+      alert(`Institución con ID ${id} eliminada correctamente.`);
+      this.cargarInstituciones(); 
+    });
+}
 
   resetForm() {
     this.cargarInstituciones();

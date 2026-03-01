@@ -7,23 +7,26 @@ import { Observable } from 'rxjs';
 })
 export class InstitucionService {
 
-  private apiUrl = 'http://localhost:8000/api/instituciones';
+  private apiUrl = 'http://localhost/api/Instituciones';
 
   constructor(private http: HttpClient) {}
 
+
   getInstituciones(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
+    return this.http.get<any[]>(`${this.apiUrl}/getall`);
   }
+
 
   crear(data: any): Observable<any> {
-    return this.http.post(this.apiUrl, data);
+    return this.http.post(`${this.apiUrl}/create`, data);
   }
 
+
   actualizar(id: number, data: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${id}`, data);
+    return this.http.put(`${this.apiUrl}/${id}/update`, data);
   }
 
   eliminar(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+    return this.http.delete(`${this.apiUrl}/${id}/delete`);
   }
 }

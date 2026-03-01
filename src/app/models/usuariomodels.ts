@@ -1,8 +1,8 @@
 export interface Usuario {
-  id?: number;
+  id_usuario?: number;
   nombre_usuario: string;
   tipo_documento: string;
-  documento: string;
+  documento: number;
   cod_pais: number;
   cod_municipio: number;
   id_rol: number;
@@ -14,6 +14,6 @@ export interface Usuario {
   estado_usuario: string;
   creado_por_usuario: string;
   fecha_creacion_usuario: string;
-  create_at: string;
+//  create_at: string;
   licencia: string;
 }

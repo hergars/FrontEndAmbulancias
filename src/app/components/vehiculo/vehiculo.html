@@ -21,7 +21,7 @@
 
         <div class="form-group">
           <i class="fas fa-key"></i>
-          <input type="text" formControlName="codsecretaria" placeholder="Cod Secretaria">
+          <input type="number" formControlName="cod_secretaria" placeholder="Cod Secretaria">
         </div>
 
       </div>
@@ -42,12 +42,12 @@
 
         <div class="form-group">
           <i class="fas fa-id-card"></i>
-          <input type="text" formControlName="soat" placeholder="Soat">
+          <input type="date" formControlName="soat" placeholder="Soat">
         </div>
 
         <div class="form-group">
           <i class="fas fa-key"></i>
-          <input type="text" formControlName="tecnicomecanica" placeholder="Tecnicomecanica">
+          <input type="date" formControlName="tecnomecanica" placeholder="Tecnicomecanica">
         </div>
 
       </div>
@@ -57,8 +57,8 @@
           <i class="fas fa-tag"></i>
           <select formControlName="tipo_vehiculo">
             <option value="">Tipo</option>
-            <option value="basica">Basica</option>
-            <option value="medicalizada">Medicalizada</option>
+            <option value="AMBULANCIA">Basica</option>
+            <option value="AMBULANCIA">Medicalizada</option>
           </select>
         </div>
 
@@ -66,8 +66,8 @@
           <i class="fas fa-toggle-on"></i>
           <select formControlName="estado_vehiculo">
             <option value="">Estado</option>
-            <option value="activo">Activo</option>
-            <option value="inactivo">Inactivo</option>
+            <option value="ACTIVO">Activo</option>
+            <option value="INACTIVO">Inactivo</option>
           </select>
         </div>
 
@@ -101,19 +101,19 @@
 
         <tbody>
           <tr *ngFor="let v of vehiculos">
-            <td>{{ v.placa | uppercase }}</td>
-            <td>{{ v.codsecretaria | titlecase }}</td>
+            <td>{{ v.placa }}</td>
+            <td>{{ v.cod_secretaria }}</td>
             <td>{{ v.modelo }}</td>
             <td>{{ v.marca | uppercase }}</td>
             <td>{{ v.tipo_vehiculo  }}</td>
-            <td>{{ v.soat | titlecase }}</td>
-            <td>{{ v.tecnicomecanica | titlecase }}</td>
+            <td>{{ v.soat }}</td>
+            <td>{{ v.tecnomecanica }}</td>
             <td>{{ v.estado_vehiculo }}</td>
             <td>
               <button class="btn-edit" (click)="editar(v)">
                 <i class="fas fa-edit"></i>
               </button>
-              <button class="btn-delete" (click)="eliminar(v.id)">
+              <button class="btn-delete" (click)="eliminar(v.placa)">
                 <i class="fas fa-trash"></i>
               </button>
             </td>
