@@ -16,14 +16,14 @@ export class UsuarioService {
   }
 
   crear(usuario: any): Observable<any> {
-    return this.http.post(this.apiUrl, usuario);
+    return this.http.post(`${this.apiUrl}/create`, usuario);
   }
 
   actualizar(id: number, usuario: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${id}`, usuario);
+    return this.http.put(`${this.apiUrl}/${id}/update`, usuario);
   }
 
   eliminar(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+    return this.http.delete(`${this.apiUrl}/${id}/delete`);
   }
 }

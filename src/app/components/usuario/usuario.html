@@ -17,17 +17,17 @@
                 <div class="form-group">
                     <i class="fas fa-user-shield"></i>
                     <select formControlName="tipo_documento">
-                        <option value="">Tipo documento</option>
-                        <option value="1">CC</option>
-                        <option value="2">TI</option>
-                        <option value="3">RC</option>
-                        <option value="4">PS</option>
+                        <option [ngValue]="null">Tipo documento</option>
+                        <option [ngValue]="'CC'">CC</option>
+                        <option [ngValue]="'TI'">TI</option>
+                        <option [ngValue]="'RC'">RC</option>
+                        <option [ngValue]="'PS'">PS</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <i class="fas fa-user-tag"></i>
-                    <input type="text" formControlName="documento" placeholder="Numero documento">
+                    <input type="number" formControlName="documento" placeholder="Numero documento">
                 </div>
             </div>
 
@@ -41,10 +41,10 @@
                 <div class="form-group">
                     <i class="fas fa-map"></i>
                     <select formControlName="cod_eps">
-                        <option value="">Eps</option>
-                        <option value="1">Compensar</option>
-                        <option value="2">Nueva</option>
-                        <option value="3">Famisanar</option>
+                        <option [ngValue]="null">Eps</option>
+                        <option [ngValue]="1">Compensar</option>
+                        <option [ngValue]="2">Nueva</option>
+                        <option [ngValue]="3">Famisanar</option>
                     </select>
                 </div>
             </div>
@@ -53,20 +53,20 @@
                 <div class="form-group">
                     <i class="fas fa-user-shield"></i>
                     <select formControlName="id_rol">
-                        <option value="">Rol</option>
-                        <option value="1">Administrador</option>
-                        <option value="2">Operador</option>
-                        <option value="3">Medico</option>
-                        <option value="4">Auxiliar</option>
+                        <option [ngValue]="null">Rol</option>
+                        <option [ngValue]="1">Administrador</option>
+                        <option [ngValue]="2">Operador</option>
+                        <option [ngValue]="3">Medico</option>
+                        <option [ngValue]="4">Auxiliar</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <i class="fas fa-venus-mars"></i>
                     <select formControlName="sexo">
-                        <option value="">Sexo</option>
-                        <option value="1">Masculino</option>
-                        <option value="2">Femenino</option>
+                        <option [ngValue]="null">Sexo</option>
+                        <option [ngValue]="'Masculino'">Masculino</option>
+                        <option [ngValue]="'Femenino'">Femenino</option>
                     </select>
                 </div>
             </div>
@@ -87,17 +87,17 @@
                 <div class="form-group">
                     <i class="fas fa-map"></i>
                     <select formControlName="cod_pais">
-                        <option value="">Pais</option>
-                        <option value="57">Colombia</option>
-                        <option value="52">Mexico</option>
+                        <option [ngValue]="">Pais</option>
+                        <option [ngValue]="57">Colombia</option>
+                        <option [ngValue]="52">Mexico</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <i class="fas fa-city"></i>
                     <select formControlName="cod_municipio">
-                        <option value="">Municipio</option>
-                        <option value="001">Bogotá</option>
-                        <option value="002">Medellín</option>
+                        <option [ngValue]="">Municipio</option>
+                        <option [ngValue]="001">Bogotá</option>
+                        <option [ngValue]="002">Medellín</option>
                     </select>
                 </div>
             </div>
@@ -109,19 +109,19 @@
                 <div class="form-group">
                     <i class="fas fa-map"></i>
                     <select formControlName="tipo_sangre">
-                        <option value="">Tipo de Sangre</option>
-                        <option value="1">O+</option>
-                        <option value="2">O-</option>
-                        <option value="3">A+</option>
-                        <option value="4">A-</option>
+                        <option [ngValue]="null">Tipo de Sangre</option>
+                        <option [ngValue]="'O+'">O+</option>
+                        <option [ngValue]="'O-'">O-</option>
+                        <option [ngValue]="'A+'">A+</option>
+                        <option [ngValue]="'A-'">A-</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <i class="fas fa-city"></i>
                     <select formControlName="estado_usuario">
-                        <option value="">Estado</option>
-                        <option value="1">Activo</option>
-                        <option value="2">Inactivo</option>
+                        <option [ngValue]="null">Estado</option>
+                        <option [ngValue]="'Activo'">Activo</option>
+                        <option [ngValue]="'Inactivo'">Inactivo</option>
                     </select>
                 </div>
             </div>
@@ -161,12 +161,8 @@
                         <td>{{ usuario.tipo_documento | uppercase }}</td>
                         <td>{{ usuario.documento }}</td>
                         <td>{{ usuario.nombre_usuario | titlecase }}</td>
-                        <td>
-                            <span class="badge" [ngClass]="usuario.rol">
-                                {{ usuario.id_rol | uppercase }}
-                            </span>
-                        </td>
-                        <td>{{ usuario.eps }}</td>
+                        <td>{{ usuario.id_rol }} </td>
+                        <td>{{ usuario.cod_eps }}</td>
                         <td>{{ usuario.celular_usuario }}</td>
                         <td>{{ usuario.correo_usuario }}</td>
                         <td>{{ usuario.cod_pais }}</td>
