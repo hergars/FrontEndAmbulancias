@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { UsuarioService } from '../../services/usuarioservice';
@@ -6,6 +6,7 @@ import { Cabecera } from '../cabecera/cabecera';
 import { Pie } from '../pie/pie';
 import { Navegacion } from '../navegacion/navegacion';
 import { Usuario } from '../../models/usuariomodels';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-usuario',
@@ -15,6 +16,8 @@ import { Usuario } from '../../models/usuariomodels';
   styleUrls: ['./usuario.css']
 })
 export class UsuarioComponent implements OnInit {
+
+  private plataformID = inject(PLATFORM_ID)
 
   usuarioForm: FormGroup;
   usuarios: Usuario[] = [];
@@ -28,7 +31,8 @@ export class UsuarioComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+    private cdr: ChangeDetectorRef
   ) {
     this.usuarioForm = this.fb.group({
       id: [null],  // 👈 id agregado para editar
@@ -52,19 +56,31 @@ export class UsuarioComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log('[UsuarioComponent] ngOnInit');
     this.cargarUsuarios();
   }
 
+  isLoading = false;
+  errorCarga = '';
+
   cargarUsuarios() {
-    this.usuarioService.getUsuarios()
-      .subscribe({
-        next: (data: Usuario[]) => {
-          this.usuarios = data;
-        },
-        error: (err) => {
-          console.error("Error al cargar usuarios:", err);
-        }
-      });
+    this.isLoading = true;
+    this.errorCarga = '';
+
+    this.usuarioService.getUsuarios().subscribe({
+      next: (data: Usuario[]) => {
+        this.usuarios = data;
+        this.isLoading = false;
+
+        this.cdr.detectChanges();
+      },
+      error: (err) => {
+        this.isLoading = false;
+        this.errorCarga = 'No se pudieron cargar los usuarios';
+        console.error(err);
+        this.cdr.detectChanges();
+      }
+    });
   }
 
   guardar() {

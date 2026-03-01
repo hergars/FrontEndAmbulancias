@@ -12,4 +12,8 @@ export class Auth {
   login(credentials: any) {
     return this.http.post(this.apiUrl, credentials);
   }
+
+  logout() {
+  localStorage.removeItem('token');
+}
 }
