@@ -11,7 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
   
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Pie, Cabecera, Inicio, Navegacion, Login, UsuarioComponent , ReactiveFormsModule, HttpClientModule],
+  imports: [RouterOutlet, ReactiveFormsModule, HttpClientModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

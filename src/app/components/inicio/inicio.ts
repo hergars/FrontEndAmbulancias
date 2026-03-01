@@ -6,7 +6,7 @@ import { Navegacion } from '../navegacion/navegacion';
 
 @Component({
   selector: 'app-inicio',
-  imports: [Cabecera, Pie, RouterLink, Navegacion],
+  imports: [Cabecera, Pie, Navegacion],
   templateUrl: './inicio.html',
   styleUrl: './inicio.css',
 })
