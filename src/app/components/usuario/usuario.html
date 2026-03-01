@@ -131,9 +131,12 @@
             </button>
 
         </form>
+
         <div class="table-container">
 
             <h2 class="table-title">Usuarios Registrados</h2>
+
+            <div *ngIf="isLoading" class="alert alert-info"> Cargando usuarios... </div> <div *ngIf="errorCarga" class="alert alert-error"> {{ errorCarga }} </div> <table *ngIf="!isLoading" class="custom-table"> <!-- tu tabla --> </table>
 
             <table class="custom-table">
 
