@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { VehiculoService } from '../../services/vehiculoservice';
@@ -11,9 +11,9 @@ import { Navegacion } from '../navegacion/navegacion';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, Cabecera, Pie, Navegacion],
   templateUrl: './vehiculo.html',
-  styleUrl: './vehiculo.css'
+  styleUrls: ['./vehiculo.css']
 })
-export class VehiculoComponent {
+export class VehiculoComponent implements OnInit {
 
   vehiculoForm: FormGroup;
   vehiculos: any[] = [];
@@ -28,10 +28,16 @@ export class VehiculoComponent {
     this.vehiculoForm = this.fb.group({
       placa: [''],
       codsecretaria: [''],
-      tipo: [''],
-      estado: ['']
+      tipo_vehiculo: [''],
+      marca: [''],
+      modelo: [''],
+      soat: [''],
+      tecnicomecanica: [''],
+      estado_vehiculo: ['']
     });
 
+  }
+  ngOnInit(): void {
     this.cargarVehiculos();
   }
 
@@ -39,6 +45,7 @@ export class VehiculoComponent {
     this.vehiculoService.getVehiculos()
       .subscribe(data => {
         this.vehiculos = data;
+        console.log("vehiculos desde backend:", data);
       });
   }
 

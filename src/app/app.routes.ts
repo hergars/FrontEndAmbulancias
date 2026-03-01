@@ -6,6 +6,7 @@ import { Servicios } from './components/servicios/servicios';
 import { VehiculoComponent  } from './components/vehiculo/vehiculo'; 
 import { InstitucionComponent } from './components/institucion/institucion'; 
 import { AsignacionComponent } from './components/asignaservicio/asignaservicio';
+import { DepartamentosComponent } from './components/departamentos/departamentos';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -16,5 +17,6 @@ export const routes: Routes = [
   { path: 'vehiculos', component: VehiculoComponent  },
   { path: 'instituciones', component: InstitucionComponent },
   { path: 'asignaservicios', component: AsignacionComponent },
+  { path: 'departamentos', component: DepartamentosComponent },
   { path: '**', redirectTo: 'login' }
 ];

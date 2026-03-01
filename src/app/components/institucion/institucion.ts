@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { InstitucionService } from '../../services/institucionservice';
@@ -11,9 +11,9 @@ import { Navegacion } from '../navegacion/navegacion';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, Cabecera, Pie, Navegacion],
   templateUrl: './institucion.html',
-  styleUrl: './institucion.css'
+  styleUrls: ['./institucion.css']
 })
-export class InstitucionComponent {
+export class InstitucionComponent implements OnInit {
 
   institucionForm: FormGroup;
   instituciones: any[] = [];
@@ -26,14 +26,16 @@ export class InstitucionComponent {
   ) {
 
     this.institucionForm = this.fb.group({
-      nombre: [''],
-      direccion: [''],
-      telefono: [''],
-      departamento: [''],
-      ciudad: [''],
-      complejidad: ['']
+      nombre_institucion: [''],
+      direccion_institucion: [''],
+      telefono_institucion: [''],
+      departamento_institucion: [''],
+      ciudad_institucion: [''],
+      tipo_institucion: [''],
+      estado_institucion: ['']
     });
-
+  }
+  ngOnInit(): void {
     this.cargarInstituciones();
   }
 

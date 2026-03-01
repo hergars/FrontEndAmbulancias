@@ -15,24 +15,24 @@
       <div class="form-row">
         <div class="form-group">
           <i class="fas fa-university"></i>
-          <input type="text" formControlName="nombre" placeholder="Nombre">
+          <input type="text" formControlName="nombre_institucion" placeholder="Nombre">
         </div>
 
         <div class="form-group">
           <i class="fas fa-map-marker-alt"></i>
-          <input type="text" formControlName="direccion" placeholder="Dirección">
+          <input type="text" formControlName="direccion_institucion" placeholder="Dirección">
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-group">
           <i class="fas fa-phone"></i>
-          <input type="text" formControlName="telefono" placeholder="Teléfono">
+          <input type="text" formControlName="telefono_institucion" placeholder="Teléfono">
         </div>
 
         <div class="form-group">
           <i class="fas fa-map"></i>
-          <select formControlName="departamento">
+          <select formControlName="departamento_institucion" placeholder="Departamento">
             <option value="">Departamento</option>
             <option value="11">Bogotá</option>
             <option value="05">Antioquia</option>
@@ -43,7 +43,7 @@
       <div class="form-row">
         <div class="form-group">
           <i class="fas fa-city"></i>
-          <select formControlName="ciudad">
+          <select formControlName="ciudad_institucion" placeholder="Ciudad">
             <option value="">Ciudad</option>
             <option value="001">Bogotá</option>
             <option value="002">Medellín</option>
@@ -52,15 +52,29 @@
 
         <div class="form-group">
           <i class="fas fa-cogs"></i>
-          <select formControlName="complejidad">
+          <select formControlName="tipo_institucion">
             <option value="">Complejidad</option>
-            <option value="alta">Alta</option>
-            <option value="media">Media</option>
-            <option value="baja">Baja</option>
+            <option value="1">Alta</option>
+            <option value="2">Media</option>
+            <option value="3">Baja</option>
           </select>
         </div>
       </div>
+      <div class="form-row">
+        <div class="form-group">
+          <i class="fas fa-university"></i>
+          <select formControlName="estado_institucion">
+            <option value="">Estado</option>
+            <option value="1">Activa</option>
+            <option value="2">Inactiva</option>
+          </select>
+        </div>
 
+        <div class="form-group">
+          <i class="fas fa-map-marker-alt"></i>
+          <input type="text" formControlName="direccion_institucion" placeholder="Dirección">
+        </div>
+      </div>
       <button type="submit" class="btn-guardar">
         {{ editando ? 'Actualizar' : 'Crear Institución' }}
       </button>
@@ -80,18 +94,20 @@
           <th>Departamento</th>
           <th>Ciudad</th>
           <th>Complejidad</th>
+          <th>Estado</th>
           <th>Acciones</th>
         </tr>
       </thead>
 
       <tbody>
         <tr *ngFor="let i of instituciones">
-          <td>{{ i.nombre }}</td>
-          <td>{{ i.direccion }}</td>
+          <td>{{ i.nombre | uppercase }}</td>
+          <td>{{ i.direccion | uppercase}}</td>
           <td>{{ i.telefono }}</td>
-          <td>{{ i.departamento }}</td>
-          <td>{{ i.ciudad }}</td>
+          <td>{{ i.departamento | uppercase}}</td>
+          <td>{{ i.ciudad | uppercase}}</td>
           <td>{{ i.complejidad }}</td>
+          <td>{{ i.estado | uppercase}}</td> 
           <td>
             <button class="btn-edit" (click)="editar(i)">
               <i class="fas fa-edit"></i>

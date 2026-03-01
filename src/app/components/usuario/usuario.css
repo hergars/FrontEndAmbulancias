@@ -135,8 +135,21 @@ body {
   background-color: #f5f5f5;
 }
 
+.badge.administrador {
+  background: #d32f2f;
+}
 
+.badge.operador {
+  background: #1976d2;
+}
 
+.badge.medico {
+  background: #2fd360;
+}
+
+.badge.auxiliar {
+  background: #870e79;
+}
 
 /* BOTONES */
 .acciones {

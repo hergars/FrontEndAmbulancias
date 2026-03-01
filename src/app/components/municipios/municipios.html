@@ -1,0 +1,8 @@
+<div *ngIf="municipiosFiltrados.length > 0">
+  <select (change)="seleccionarMunicipio($event)">
+    <option value="">Seleccione municipio</option>
+    <option *ngFor="let m of municipiosFiltrados" [value]="m.id">
+      {{ m.nombre }}
+    </option>
+  </select>
+</div>

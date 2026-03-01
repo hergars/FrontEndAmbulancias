@@ -7,12 +7,12 @@ import { Observable } from 'rxjs';
 })
 export class VehiculoService {
 
-  private apiUrl = 'http://localhost:8000/api/vehiculos';
+  private apiUrl = 'http://localhost/api/vehiculos';
 
   constructor(private http: HttpClient) {}
 
   getVehiculos(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
+    return this.http.get<any[]>(`${this.apiUrl}/getall`);
   }
 
   crear(data: any): Observable<any> {

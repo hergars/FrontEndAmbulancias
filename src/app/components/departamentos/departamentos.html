@@ -1,0 +1,31 @@
+<app-cabecera></app-cabecera>
+<div class="main-layout">
+
+    <aside class="sidebar">
+        <app-navegacion></app-navegacion>
+    </aside>
+    <div class="form-container">
+        <h2>Ejemplo de paso de PArametros de Padre a Hijo y Visceversa</h2>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="departamento">Departamento</label>
+                <select [(ngModel)]="departamentoIdSeleccionado">
+                    <option [ngValue]="null">Seleccione departamento</option>
+                    <option *ngFor="let d of departamentos" [ngValue]="d.id">
+                        {{ d.nombre }}
+                    </option>
+                </select>
+
+
+            </div>
+
+            <div class="form-group">
+                <label for="municipio">Municipio</label>
+                <app-municipios [departamentoId]="departamentoIdSeleccionado"
+                    (municipioSeleccionado)="recibirMunicipio($event)">
+                </app-municipios>
+            </div>
+        </div>
+    </div>
+</div>
+<app-pie></app-pie>

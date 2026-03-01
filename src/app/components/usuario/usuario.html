@@ -1,119 +1,193 @@
-
-<app-cabecera></app-cabecera>   
+<app-cabecera></app-cabecera>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <div class="main-layout">
-  <aside class="sidebar">
-    <app-navegacion></app-navegacion>
-  </aside>
+    <aside class="sidebar">
+        <app-navegacion></app-navegacion>
+    </aside>
 
     <div class="form-container">
 
-    <h2>{{ editando ? 'Editar Usuario' : 'Crear Usuario' }}</h2>
+        <h2>{{ editando ? 'Editar Usuario' : 'Crear Usuario' }}</h2>
 
         <form [formGroup]="usuarioForm" (ngSubmit)="guardar()" class="form-container">
 
-        <div class="form-row">
-            <div class="form-group">
-            <i class="fas fa-user"></i>
-            <input type="text" formControlName="nombre" placeholder="Nombre">
+            <div class="form-row">
+                <div class="form-group">
+                    <i class="fas fa-user-shield"></i>
+                    <select formControlName="tipo_documento">
+                        <option value="">Tipo documento</option>
+                        <option value="1">CC</option>
+                        <option value="2">TI</option>
+                        <option value="3">RC</option>
+                        <option value="4">PS</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <i class="fas fa-user-tag"></i>
+                    <input type="text" formControlName="documento" placeholder="Numero documento">
+                </div>
             </div>
 
-            <div class="form-group">
-            <i class="fas fa-user-tag"></i>
-            <input type="text" formControlName="apellido" placeholder="Apellido">
-            </div>
-        </div>
+            <div class="form-row">
 
-        <div class="form-row">
-            <div class="form-group">
-            <i class="fas fa-user-shield"></i>
-            <select formControlName="rol">
-                <option value="">Rol</option>
-                <option value="admin">Administrador</option>
-                <option value="editor">Operador</option>
-                <option value="medico">Medico</option>
-                <option value="auxiliar">Auxiliar</option>
-            </select>
-            </div>
+                <div class="form-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" formControlName="nombre_usuario" placeholder="Nombre">
+                </div>
 
-            <div class="form-group">
-            <i class="fas fa-map-marker-alt"></i>
-            <input type="text" formControlName="direccion" placeholder="Dirección">
-            </div>
-        </div>
-
-        <div class="form-row">
-            <div class="form-group">
-            <i class="fas fa-mobile-alt"></i>
-            <input type="tel" formControlName="celular" placeholder="Celular">
+                <div class="form-group">
+                    <i class="fas fa-map"></i>
+                    <select formControlName="cod_eps">
+                        <option value="">Eps</option>
+                        <option value="1">Compensar</option>
+                        <option value="2">Nueva</option>
+                        <option value="3">Famisanar</option>
+                    </select>
+                </div>
             </div>
 
-            <div class="form-group">
-            <i class="fas fa-envelope"></i>
-            <input type="email" formControlName="email" placeholder="Email">
-            </div>
-        </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <i class="fas fa-user-shield"></i>
+                    <select formControlName="id_rol">
+                        <option value="">Rol</option>
+                        <option value="1">Administrador</option>
+                        <option value="2">Operador</option>
+                        <option value="3">Medico</option>
+                        <option value="4">Auxiliar</option>
+                    </select>
+                </div>
 
-        <div class="form-row">
-            <div class="form-group full-width">
-            <i class="fas fa-id-card"></i>
-            <input type="text" formControlName="licencia" placeholder="Licencia">
+                <div class="form-group">
+                    <i class="fas fa-venus-mars"></i>
+                    <select formControlName="sexo">
+                        <option value="">Sexo</option>
+                        <option value="1">Masculino</option>
+                        <option value="2">Femenino</option>
+                    </select>
+                </div>
             </div>
-        </div>
 
-        <button type="submit" class="btn-guardar">
-            {{ editando ? 'Actualizar' : 'Crear Usuario' }}
-        </button>
+            <div class="form-row">
+                <div class="form-group">
+                    <i class="fas fa-mobile-alt"></i>
+                    <input type="tel" formControlName="celular_usuario" placeholder="Celular">
+                </div>
+
+                <div class="form-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" formControlName="correo_usuario" placeholder="Email">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <i class="fas fa-map"></i>
+                    <select formControlName="cod_pais">
+                        <option value="">Pais</option>
+                        <option value="57">Colombia</option>
+                        <option value="52">Mexico</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <i class="fas fa-city"></i>
+                    <select formControlName="cod_municipio">
+                        <option value="">Municipio</option>
+                        <option value="001">Bogotá</option>
+                        <option value="002">Medellín</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" formControlName="licencia" placeholder="Licencia">
+                </div>
+                <div class="form-group">
+                    <i class="fas fa-map"></i>
+                    <select formControlName="tipo_sangre">
+                        <option value="">Tipo de Sangre</option>
+                        <option value="1">O+</option>
+                        <option value="2">O-</option>
+                        <option value="3">A+</option>
+                        <option value="4">A-</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <i class="fas fa-city"></i>
+                    <select formControlName="estado_usuario">
+                        <option value="">Estado</option>
+                        <option value="1">Activo</option>
+                        <option value="2">Inactivo</option>
+                    </select>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-guardar">
+                {{ editando ? 'Actualizar' : 'Crear Usuario' }}
+            </button>
 
         </form>
-    <div class="table-container">
+        <div class="table-container">
 
-    <h2 class="table-title">Usuarios Registrados</h2>
+            <h2 class="table-title">Usuarios Registrados</h2>
 
-    <table class="custom-table">
+            <table class="custom-table">
 
-        <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Rol</th>
-            <th>Dirección</th>
-            <th>Celular</th>
-            <th>Email</th>
-            <th>Licencia</th>
-            <th class="acciones-col">Acciones</th>
-        </tr>
-        </thead>
+                <thead>
+                    <tr>
+                        <th>Tipo</th>
+                        <th>Documento</th>
+                        <th>Nombre</th>
+                        <th>Rol</th>
+                        <th>Eps</th>
+                        <th>Celular</th>
+                        <th>Email</th>
+                        <th>Pais</th>
+                        <th>Ciudad</th>
+                        <th>Tipo Sangre</th>
+                        <th>Estado</th>
+                        <th>Licencia</th>
+                        <th class="acciones-col">Acciones</th>
+                    </tr>
+                </thead>
 
-        <tbody>
-        <tr *ngFor="let usuario of usuarios; let i = index">
-            <td>{{ usuario.nombre }}</td>
-            <td>{{ usuario.apellido }}</td>
-            <td>
-            <span class="badge" [ngClass]="usuario.rol">
-                {{ usuario.rol }}
-            </span>
-            </td>
-            <td>{{ usuario.direccion }}</td>
-            <td>{{ usuario.celular }}</td>
-            <td>{{ usuario.email }}</td>
-            <td>{{ usuario.licencia }}</td>
-            <td class="acciones">
-            <button class="btn-edit" (click)="editar(usuario, i)">
-                <i class="fas fa-edit"></i>
-            </button>
-            <button class="btn-delete" (click)="eliminar(i)">
-                <i class="fas fa-trash"></i>
-            </button>
-            </td>
-        </tr>
-        </tbody>
+                <tbody>
 
-    </table>
+                    <tr *ngFor="let usuario of usuarios; let i = index">
+                        <td>{{ usuario.tipo_documento | uppercase }}</td>
+                        <td>{{ usuario.documento }}</td>
+                        <td>{{ usuario.nombre_usuario | titlecase }}</td>
+                        <td>
+                            <span class="badge" [ngClass]="usuario.rol">
+                                {{ usuario.id_rol | uppercase }}
+                            </span>
+                        </td>
+                        <td>{{ usuario.eps }}</td>
+                        <td>{{ usuario.celular_usuario }}</td>
+                        <td>{{ usuario.correo_usuario }}</td>
+                        <td>{{ usuario.cod_pais }}</td>
+                        <td>{{ usuario.cod_municipio }}</td>
+                        <td>{{ usuario.tipo_sangre }}</td>
+                        <td>{{ usuario.estado_usuario }}</td>
+                        <td>{{ usuario.licencia }}</td>
+                        <td class="acciones">
+                            <button class="btn-edit" (click)="editar(usuario, i)">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn-delete" (click)="eliminar(i)">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
 
-</div>
+            </table>
+
+        </div>
     </div>
 </div>
-<app-pie></app-pie> 
+<app-pie></app-pie>

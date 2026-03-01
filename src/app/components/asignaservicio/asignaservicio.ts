@@ -14,7 +14,7 @@ import { Navegacion } from '../navegacion/navegacion';
   styleUrl: './asignaservicio.css'
 })
 export class AsignacionComponent {
-
+  ahora = new Date();
   asignacionForm: FormGroup;
   asignaciones: any[] = [];
   editando = false;

@@ -9,7 +9,7 @@
   <div class="form-container">
 
     <h2>{{ editando ? 'Actualizar Vehículo' : 'Crear Vehículo' }}</h2>
-
+    <!-- <h2>{{ ahora | date: 'dd/MM/yyyy' }}</h2> -->
     <form [formGroup]="vehiculoForm" (ngSubmit)="guardar()">
 
       <div class="form-row">
@@ -21,16 +21,41 @@
 
         <div class="form-group">
           <i class="fas fa-key"></i>
-          <input type="text" formControlName="codsecretaria" placeholder="CodSecretaria">
+          <input type="text" formControlName="codsecretaria" placeholder="Cod Secretaria">
         </div>
 
       </div>
+      <div class="form-row">
 
+        <div class="form-group">
+          <i class="fas fa-id-card"></i>
+          <input type="text" formControlName="marca" placeholder="Marca">
+        </div>
+
+        <div class="form-group">
+          <i class="fas fa-key"></i>
+          <input type="text" formControlName="modelo" placeholder="Modelo">
+        </div>
+
+      </div>
+      <div class="form-row">
+
+        <div class="form-group">
+          <i class="fas fa-id-card"></i>
+          <input type="text" formControlName="soat" placeholder="Soat">
+        </div>
+
+        <div class="form-group">
+          <i class="fas fa-key"></i>
+          <input type="text" formControlName="tecnicomecanica" placeholder="Tecnicomecanica">
+        </div>
+
+      </div>
       <div class="form-row">
 
         <div class="form-group">
           <i class="fas fa-tag"></i>
-          <select formControlName="tipo">
+          <select formControlName="tipo_vehiculo">
             <option value="">Tipo</option>
             <option value="basica">Basica</option>
             <option value="medicalizada">Medicalizada</option>
@@ -39,7 +64,7 @@
 
         <div class="form-group">
           <i class="fas fa-toggle-on"></i>
-          <select formControlName="estado">
+          <select formControlName="estado_vehiculo">
             <option value="">Estado</option>
             <option value="activo">Activo</option>
             <option value="inactivo">Inactivo</option>
@@ -57,37 +82,45 @@
     <!-- TABLA -->
     <div class="table-container">
 
-    <h2 class="table-title">Vehículos Registrados</h2>
-        <table class="custom-table">
+      <h2 class="table-title">Vehículos Registrados</h2>
+      <table class="custom-table">
 
         <thead>
-            <tr>
+          <tr>
             <th>Placa</th>
             <th>CodSecretaria</th>
+            <th>Modelo</th>
+            <th>Marca</th>
             <th>Tipo</th>
+            <th>Soat</th>
+            <th>Tecnicomecanica</th>
             <th>Estado</th>
             <th>Acciones</th>
-            </tr>
+          </tr>
         </thead>
 
         <tbody>
-            <tr *ngFor="let v of vehiculos">
-            <td>{{ v.placa }}</td>
-            <td>{{ v.codsecretaria }}</td>
-            <td>{{ v.tipo }}</td>
-            <td>{{ v.estado }}</td>
+          <tr *ngFor="let v of vehiculos">
+            <td>{{ v.placa | uppercase }}</td>
+            <td>{{ v.codsecretaria | titlecase }}</td>
+            <td>{{ v.modelo }}</td>
+            <td>{{ v.marca | uppercase }}</td>
+            <td>{{ v.tipo_vehiculo  }}</td>
+            <td>{{ v.soat | titlecase }}</td>
+            <td>{{ v.tecnicomecanica | titlecase }}</td>
+            <td>{{ v.estado_vehiculo }}</td>
             <td>
-                <button class="btn-edit" (click)="editar(v)">
+              <button class="btn-edit" (click)="editar(v)">
                 <i class="fas fa-edit"></i>
-                </button>
-                <button class="btn-delete" (click)="eliminar(v.id)">
+              </button>
+              <button class="btn-delete" (click)="eliminar(v.id)">
                 <i class="fas fa-trash"></i>
-                </button>
+              </button>
             </td>
-            </tr>
+          </tr>
         </tbody>
 
-        </table>
+      </table>
     </div>
 
   </div>

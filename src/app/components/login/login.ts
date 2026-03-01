@@ -11,6 +11,7 @@ import { Auth } from '../../services/auth';
   styleUrl: './login.css',
 })
 export class Login {
+  title = 'Ambulancias Online Version 1';
   //loginForm: FormGroup;
   isLoading = signal(false);
   errorMessage = signal('');
