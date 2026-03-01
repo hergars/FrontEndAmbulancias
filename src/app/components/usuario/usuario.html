@@ -156,9 +156,9 @@
                 </thead>
 
                 <tbody>
-
+                        
                     <tr *ngFor="let usuario of usuarios; let i = index">
-                        <td>{{ usuario.tipo_documento | uppercase }}</td>
+                        <td>{{ usuario.tipo_documento }}</td>
                         <td>{{ usuario.documento }}</td>
                         <td>{{ usuario.nombre_usuario | titlecase }}</td>
                         <td>{{ usuario.id_rol }} </td>

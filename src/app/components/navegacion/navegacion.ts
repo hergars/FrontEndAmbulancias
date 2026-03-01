@@ -7,7 +7,7 @@ import { Pie } from '../pie/pie';
 
 @Component({
   selector: 'app-navegacion',
-  imports: [CommonModule, RouterLink, Cabecera, Pie, ],
+  imports: [CommonModule, RouterLink ],
   templateUrl: './navegacion.html',
   styleUrl: './navegacion.css',
 })
